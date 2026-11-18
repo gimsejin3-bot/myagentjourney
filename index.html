@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="국가별 여행 큐레이션과 안전·리스크 정보를 제공하는 Journey & Archive.">
+  <title>Journey & Archive — 여행 큐레이션 & 안전 정보</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css?v=20261119b">
+</head>
+<body class="intro-locked">
+  <section class="book-intro" id="book-intro" role="dialog" aria-modal="true" aria-labelledby="book-intro-title">
+    <div class="book-intro-scenery" aria-hidden="true"></div>
+    <div class="book-intro-layout">
+      <div class="book-scene" aria-label="펼쳐지는 Journey & Archive 여행책">
+        <div class="book-page" aria-hidden="true">
+          <div class="book-page-photo"></div>
+          <div class="book-page-copy">
+            <span>JOURNEY & ARCHIVE · FIELD NOTES</span>
+            <svg viewBox="0 0 44 36" role="img" aria-label="Journey & Archive logo">
+              <circle cx="19" cy="17" r="12" fill="#1e73d4" stroke="#243247" stroke-width="2.4"/>
+              <g fill="none" stroke="#8fc4f0" stroke-width="1.2" opacity=".9">
+                <ellipse cx="19" cy="17" rx="5.4" ry="12"/>
+                <path d="M7 17h24M9.5 10.5h19M9.5 23.5h19"/>
+              </g>
+              <g fill="#f3ecd6" stroke="#243247" stroke-width="1">
+                <path d="M11.3 9.5c1.8-.6 3.8-.4 5.3.5l-1.4 1.9-2.2.2-1.3 2-1.9-.6-.8-2 2.3-2z"/>
+                <path d="M13.2 17.8l3.1-.7 1.5 1.8-.5 2.6-2.2 1.3-1.6-2 .7-2.1z"/>
+                <path d="M24.6 11.8l2.7-.6 2.1 1.3-.7 2.1-2.5.7-1.8-1.4z"/>
+              </g>
+              <circle cx="27" cy="19" r="8.6" fill="#fff" fill-opacity=".2" stroke="#243247" stroke-width="3"/>
+              <circle cx="27" cy="19" r="6.6" fill="#fff" stroke="#243247" stroke-width="1.4"/>
+              <path d="M23.7 17.2c.8-1.1 2.2-1.6 3.6-1.3" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M34 25.5l6.2 6.2" stroke="#243247" stroke-width="3.2" stroke-linecap="round"/>
+              <path d="M34 25.5l6.2 6.2" stroke="#ed405f" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <strong>여행의 순간,<br>그곳의 이야기를 기록합니다.</strong>
+            <i>TRAVEL · CONTEXT · CARE</i>
+          </div>
+        </div>
+        <button class="book-cover" id="book-cover" type="button" aria-label="여행책 펼치기" aria-expanded="false">
+          <svg class="cover-logo" viewBox="0 0 44 36" role="img" aria-label="Journey & Archive logo">
+            <circle cx="19" cy="17" r="12" fill="#1e73d4" stroke="#243247" stroke-width="2.4"/>
+            <g fill="none" stroke="#8fc4f0" stroke-width="1.2" opacity=".9">
+              <ellipse cx="19" cy="17" rx="5.4" ry="12"/>
+              <path d="M7 17h24M9.5 10.5h19M9.5 23.5h19"/>
+            </g>
+            <g fill="#f3ecd6" stroke="#243247" stroke-width="1">
+              <path d="M11.3 9.5c1.8-.6 3.8-.4 5.3.5l-1.4 1.9-2.2.2-1.3 2-1.9-.6-.8-2 2.3-2z"/>
+              <path d="M13.2 17.8l3.1-.7 1.5 1.8-.5 2.6-2.2 1.3-1.6-2 .7-2.1z"/>
+              <path d="M24.6 11.8l2.7-.6 2.1 1.3-.7 2.1-2.5.7-1.8-1.4z"/>
+            </g>
+            <circle cx="27" cy="19" r="8.6" fill="#fff" fill-opacity=".2" stroke="#243247" stroke-width="3"/>
+            <circle cx="27" cy="19" r="6.6" fill="#fff" stroke="#243247" stroke-width="1.4"/>
+            <path d="M23.7 17.2c.8-1.1 2.2-1.6 3.6-1.3" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M34 25.5l6.2 6.2" stroke="#243247" stroke-width="3.2" stroke-linecap="round"/>
+            <path d="M34 25.5l6.2 6.2" stroke="#ed405f" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="cover-wordmark">Journey <i>&</i><br>Archive</span>
+          <span class="cover-rule"></span>
+          <span class="cover-corner" aria-hidden="true">✳</span>
+        </button>
+      </div>
+      <div class="book-intro-copy">
+        <p class="hero-eyebrow"><span class="sticker-star" aria-hidden="true">✳</span> YOUR FIELD JOURNAL</p>
+        <h2 id="book-intro-title">내 여정,<br><span>한 장씩 펼쳐보기.</span></h2>
+        <button class="intro-open-button" id="book-open" type="button">내 여정 열어보기 <span aria-hidden="true">↗</span></button>
+        <p class="intro-tap-hint">화면을 눌러 책장을 펼쳐보세요</p>
+      </div>
+    </div>
+  </section>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Journey & Archive 홈">
+        <svg class="brand-logo" viewBox="0 0 44 36" role="img" aria-label="Journey & Archive logo">
+          <circle cx="19" cy="17" r="12" fill="#1e73d4" stroke="#243247" stroke-width="2.4"/>
+          <g fill="none" stroke="#8fc4f0" stroke-width="1.2" opacity=".9">
+            <ellipse cx="19" cy="17" rx="5.4" ry="12"/>
+            <path d="M7 17h24M9.5 10.5h19M9.5 23.5h19"/>
+          </g>
+          <g fill="#f3ecd6" stroke="#243247" stroke-width="1">
+            <path d="M11.3 9.5c1.8-.6 3.8-.4 5.3.5l-1.4 1.9-2.2.2-1.3 2-1.9-.6-.8-2 2.3-2z"/>
+            <path d="M13.2 17.8l3.1-.7 1.5 1.8-.5 2.6-2.2 1.3-1.6-2 .7-2.1z"/>
+            <path d="M24.6 11.8l2.7-.6 2.1 1.3-.7 2.1-2.5.7-1.8-1.4z"/>
+          </g>
+          <circle cx="27" cy="19" r="8.6" fill="#fff" fill-opacity=".2" stroke="#243247" stroke-width="3"/>
+          <circle cx="27" cy="19" r="6.6" fill="#fff" stroke="#243247" stroke-width="1.4"/>
+          <path d="M23.7 17.2c.8-1.1 2.2-1.6 3.6-1.3" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M34 25.5l6.2 6.2" stroke="#243247" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M34 25.5l6.2 6.2" stroke="#ed405f" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>journey <b>&</b> archive</span>
+      </a>
+      <nav class="main-nav" aria-label="주요 섹션">
+        <a class="nav-link active" href="#top" data-nav="all">전체 보기</a>
+        <a class="nav-link" href="#journey" data-nav="journey">✈️ 여행 큐레이션</a>
+        <a class="nav-link" href="#safety" data-nav="safety">🛡️ 안전·리스크</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <p class="hero-eyebrow"><span class="sticker-star" aria-hidden="true">✳</span> JOURNEY · CONTEXT · CARE</p>
+        <div class="hero-row">
+          <h1 id="hero-title">좋은 여정은, <span>잘 아는 것에서 시작됩니다.</span></h1>
+          <nav class="hero-tabs" aria-label="콘텐츠 바로가기">
+            <a href="#top" data-nav="all" class="hero-tab active">전체 보기</a>
+            <a href="#journey" data-nav="journey" class="hero-tab">✈️ 여행 큐레이션</a>
+            <a href="#safety" data-nav="safety" class="hero-tab">🛡️ 안전·리스크 인텔리전스</a>
+          </nav>
+        </div>
+        <div class="hero-search-wrap">
+          <form class="destination-search" id="destination-search" role="search" autocomplete="off">
+            <svg class="search-symbol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.6"></circle><path d="m16 16 4.2 4.2"></path></svg>
+            <input id="destination-query" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="destination-results" aria-label="여행 국가 또는 도시 검색" placeholder="원하는 여행지(국가/도시)를 검색하세요 (예: 프랑스, 캄보디아)">
+            <button class="search-submit" type="submit" aria-label="여행지 검색"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.6"></circle><path d="m16 16 4.2 4.2"></path></svg></button>
+          </form>
+          <div class="search-results" id="destination-results" role="listbox" aria-label="여행지 검색 결과" hidden></div>
+          <div class="search-feedback" id="search-feedback" role="status" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journey-section section-shell" id="journey" aria-labelledby="journey-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker"><span class="sticker-dot sticker-pink"></span> TRAVEL ATLAS</p>
+          <h2 id="journey-title">지도에서 고르는 <span>다음 여정.</span></h2>
+        </div>
+        <span class="section-count" id="country-count">5 COUNTRIES</span>
+      </div>
+
+      <div class="map-card" id="world-map-card">
+        <div class="map-header">
+          <div><span class="map-live-dot"></span><strong id="map-status">WORLD MAP</strong><span id="map-caption">Google Maps</span></div>
+          <a id="open-google-map" class="map-open-link" href="https://www.google.com/maps/search/?api=1&query=World" target="_blank" rel="noopener noreferrer">Google 지도 열기 <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="map-viewport">
+          <div class="map-fallback" aria-hidden="true">
+            <svg viewBox="0 0 1000 480" preserveAspectRatio="xMidYMid slice">
+              <path d="M70 105 110 72 180 58 219 77 242 105 228 132 195 140 180 166 153 177 141 210 112 204 94 176 71 166 57 136Z"/>
+              <path d="M197 222 229 232 246 267 240 300 260 330 247 369 224 415 207 389 201 350 183 319 185 279 171 252Z"/>
+              <path d="M430 103 458 84 493 89 511 106 502 122 472 126 450 119Z"/>
+              <path d="M454 145 491 130 518 151 524 188 511 219 505 252 484 275 469 245 460 219 444 190Z"/>
+              <path d="M507 101 550 78 605 72 637 83 673 74 708 91 753 82 800 103 841 117 858 141 830 157 796 149 780 174 744 168 723 191 692 186 668 205 632 197 616 170 585 165 564 143 530 140Z"/>
+              <path d="M714 211 752 198 787 207 803 231 790 249 757 250 735 238Z"/>
+              <path d="M830 282 870 270 905 285 927 309 912 329 880 326 854 314Z"/>
+              <path d="M349 170 367 158 382 168 375 188 357 190Z"/>
+            </svg>
+            <span>WORLD MAP</span>
+          </div>
+          <div id="travel-map" role="application" aria-label="국가별 여행 루트와 스팟 지도"></div>
+          <p class="map-fallback-message" id="map-fallback-message" hidden>지도를 불러올 수 없습니다. Google 지도 링크를 이용해 주세요.</p>
+        </div>
+        <div class="map-footer"><span><i class="legend-country"></i> CURATED DESTINATIONS</span><span>Google Maps</span></div>
+      </div>
+
+      <div class="country-heading">
+        <div><p class="section-kicker">DESTINATIONS</p><h3>여행할 나라</h3></div>
+        <span class="country-hint">01 — <span id="country-count-short">05</span></span>
+      </div>
+      <div class="country-grid" id="country-list" aria-label="국가 선택"></div>
+
+      <section class="country-details" id="country-details" aria-live="polite" hidden>
+        <div class="selected-country-heading">
+          <div><p class="section-kicker"><img id="selected-flag" class="country-flag" src="https://flagcdn.com/w40/fr.png" alt="" width="24" height="18" loading="lazy"> COUNTRY CURATION</p><h3 id="selected-country-name"></h3><p id="selected-country-overview"></p></div>
+          <button type="button" class="close-country" id="close-country" aria-label="국가 상세 접기">×</button>
+        </div>
+        <div class="country-accordion-grid" id="country-accordions"></div>
+      </section>
+    </section>
+
+    <section class="safety-section" id="safety" aria-labelledby="safety-title">
+      <div class="section-shell">
+        <div class="section-heading safety-heading">
+          <div>
+            <p class="section-kicker"><span class="sticker-dot sticker-sky"></span> SAFETY & RISK INTELLIGENCE</p>
+            <h2 id="safety-title">출발 전 확인하는 <span>현지 신호.</span></h2>
+          </div>
+          <a class="official-link" href="https://www.0404.go.kr/" target="_blank" rel="noopener noreferrer">외교부 해외안전여행 <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="safety-country-heading"><h3>국가별 주요 확인 사항</h3><span>TRAVEL ADVISORIES · FIELD NOTES</span></div>
+        <div class="safety-country-grid" id="safety-country-list"></div>
+        <p class="safety-disclaimer">안전 정보는 참고용입니다. 경보 단계와 지정 지역은 바뀔 수 있으므로 출발 전 외교부와 현지 공식 재난 공지를 확인하세요.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="#top">journey <b>&</b> archive</a>
+    <span>TRAVEL WITH CONTEXT. MOVE WITH CARE.</span>
+    <a href="#top" class="back-top">처음으로 ↑</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="data.js?v=20261118u"></script>
+  <script src="script.js?v=20261119a"></script>
+</body>
+</html>
